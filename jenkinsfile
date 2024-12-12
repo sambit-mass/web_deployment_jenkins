@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    stages {
+         stage("check & remove")
+                  {
+                    steps{
+                          sh ' rm -rf *'
+                          sh 'rm -rf /var/www/html/*'
+                      }
+                  }
+        stage('Clone') {
+            steps {
+                git branch: 'webpage2', url: 'https://github.com/sambit-8490/web_deployment_jenkins.git'
+                
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'cp -r /var/lib/jenkins/workspace/jenkins_git_project/* /var/www/html/'
+            }
+        }
+    }
+    post {
+        always{
+             mail to: 'sambitkumarchaudhury786@gmail.com',
+            subject: "successfully deploy webpage using GIT-JENKINS-AWS-EC2 ${BUILD_ID}",
+            body: "this is jenkins url ${BUILD_URL}"
+        }
+    }
+    
+}
