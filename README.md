@@ -25,7 +25,7 @@ Apache/Nginx – Web server to serve the deployed webpage
 
 Setup Instructions
 
-Step 1: Install Required Packages
+------------Step 1: Install Required Packages
 
 On your VM or EC2 instance, install the following:
 
@@ -37,7 +37,7 @@ If using Nginx instead of Apache:
 
 sudo apt install -y nginx
 
-Step 2: Configure Permissions
+------------Step 2: Configure Permissions
 
 Ensure Jenkins has the right permissions to access required paths:
 
@@ -51,7 +51,7 @@ sudo chown -R jenkins:jenkins /var/www/html/
 
 sudo chmod -R 775 /var/www/html/
 
-Step 3: Access Jenkins
+------------Step 3: Access Jenkins
 
 Find the public IP of your EC2 instance:
 
@@ -67,18 +67,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 Follow the on-screen instructions to complete the setup.
 
-Step 4: Deploy the Webpage Using Jenkins
+---------------Step 4: Deploy the Webpage Using Jenkins
 
-Option 1: Freestyle Job
-
-Open Jenkins Dashboard → New Item → Freestyle Project
-
-Under Source Code Management, select Git and enter your repository URL
-
-Under Build Steps, add an Execute Shell step:
-
-cp -r * /var/www/html/
-
-Save and Build Now
-
+==============write jenkins script==========
 
