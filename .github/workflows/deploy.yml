@@ -4,6 +4,10 @@ on:
   push:
     branches: [ "master" ]
 
+permissions:
+  pages: write         # allow deploying to GitHub Pages
+  id-token: write      # allow getting ID token for deploy action
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
