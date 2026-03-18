@@ -19,7 +19,7 @@ jobs:
           fi || echo "No existing container"
 
       - name: Build Docker image
-        run: docker build -t web-deploy-image .
+        run: docker build -t web-deploy-image1 .
 
       - name: Run Docker container
-        run: docker run -d -p 8000:80 --name web-deploy-container web-deploy-image
+        run: docker run -d -p 8000:80 --name web-deploy-container web-deploy-image1
