@@ -1,0 +1,23 @@
+name: Docker Deploy Web Project
+
+on:
+ workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t web-deploy-image .
+
+      - name: Run Docker container
+        run: |
+          docker run -d -p 8000:80 --name web-deploy-container web-deploy-image
