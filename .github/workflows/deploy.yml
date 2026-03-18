@@ -5,16 +5,29 @@ on:
     branches: [ "master" ]
 
 permissions:
-  pages: write         # allow deploying to GitHub Pages
-  id-token: write      # allow getting ID token for deploy action
+  pages: write
+  id-token: write
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      # Optional: you could run a build step if you had one
+      # For pure HTML, this is not needed
+      # - name: Build site
+      #   run: echo "Nothing to build for static HTML"
+
+      - name: Upload website artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: |
+            index.html
+            css/
+            js/
+            images/
+            fonts/
